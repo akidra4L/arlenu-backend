@@ -1,1 +1,4 @@
 # arlenu-backend
+
+- NodeJS
+- MongoDB
