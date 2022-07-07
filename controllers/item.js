@@ -1,18 +1,18 @@
 const { Router } = require("express");
 const app = require("../App");
-const User = require("../models/User");
+const Item = require("../models/Item");
 
 const routes = new Router();
 
 routes.get("/", async (req, res) => {
-  const items = await User.find({});
+  const items = await Item.find({});
   res.status(200).json(items);
 });
 
 routes.post("/", async (req, res) => {
-  const user = req.body;
-  const createUser = await User.create(user);
-  res.status(200).json(createUser);
+  const item = req.body;
+  const createItem = await Item.create(item);
+  res.status(200).json(createItem);
 });
 
 module.exports = routes;
