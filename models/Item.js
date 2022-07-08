@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const itemSchema = new Schema({
   nickname: { type: String, default: null, required: true },
   title: { type: String, default: null },
+  description: { type: String, default: null },
   design: { type: Buffer, default: null },
 });
 
