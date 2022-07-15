@@ -13,6 +13,9 @@ routes.post("/", async (req, res) => {
   }
 
   const user = await User.findOne({ nickname });
+  if (!user) {
+    return res.status(400).json({ message: "User is not exists." });
+  }
 
   if (user && (await bcrypt.compare(password, user.password))) {
     const token = jwt.sign({ id: user._id, nickname }, process.env.TOKEN_KEY, {
@@ -24,11 +27,17 @@ routes.post("/", async (req, res) => {
       { token },
       { new: true }
     );
-    
+
     return res.status(200).json(toUserDTO(updated));
   } else {
     return res.status(400).json({ message: "Invalid credentials." });
   }
+});
+
+routes.get("/", async (req, res) => {
+  const { nickname } = req.body;
+  const user = await User.findOne({ nickname });
+  res.status(200).json(user);
 });
 
 module.exports = routes;

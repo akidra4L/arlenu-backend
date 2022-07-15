@@ -43,7 +43,7 @@ routes.post("/", async (req, res) => {
       { token },
       { new: true }
     );
-    console.log("User with Token:", userWithToken);
+    // console.log("User with Token:", userWithToken);
 
     res.status(201).json(toUserDTO(userWithToken));
   } catch (error) {
