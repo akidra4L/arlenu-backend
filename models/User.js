@@ -15,8 +15,6 @@ const userSchema = new Schema(
 
 const toUserDTO = (model) => {
   return {
-    name: model.name,
-    nickname: model.nickname,
     token: model.token,
   };
 };
