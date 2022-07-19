@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const jwt = require("jsonwebtoken");
 const { User, toUserDTO } = require("../models/User");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const routes = new Router();
@@ -31,23 +31,6 @@ routes.post("/", async (req, res) => {
     return res.status(200).json(toUserDTO(updated));
   } else {
     return res.status(400).json({ message: "Invalid credentials." });
-  }
-});
-
-routes.get("/", async (req, res) => {
-  try {
-    const nickname = req.params.nickname ?? req.auth.nickname;
-    const user = await User.findOne({ nickname });
-    if (user) {
-      return res.status(200).json({
-        name: user.name,
-        nickname: user.nickname,
-      });
-    } else {
-      return res.status(404).send({ message: "User not found" });
-    }
-  } catch (err) {
-    console.log(err);
   }
 });
 
