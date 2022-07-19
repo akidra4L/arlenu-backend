@@ -35,9 +35,20 @@ routes.post("/", async (req, res) => {
 });
 
 routes.get("/", async (req, res) => {
-  const { nickname } = req.body;
-  const user = await User.findOne({ nickname });
-  res.status(200).json(user);
+  try {
+    const nickname = req.params.nickname ?? req.auth.nickname;
+    const user = await User.findOne({ nickname });
+    if (user) {
+      return res.status(200).json({
+        name: user.name,
+        nickname: user.nickname,
+      });
+    } else {
+      return res.status(404).send({ message: "User not found" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = routes;
