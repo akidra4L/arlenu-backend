@@ -35,7 +35,7 @@ const createProject = async (req, res) => {
     });
     return res.status(200).json(project);
   } catch (error) {
-    return res.status(502).json({ message: "Create Project error" });
+    return res.status(502).json({ message: "Create Project error", error });
   }
 };
 
