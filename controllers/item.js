@@ -15,7 +15,7 @@ const routes = new Router();
 //   res.status(200).json(createItem);
 // });
 
-const createProject = async (res, req) => {
+const createProject = async (req, res) => {
   try {
     const { title, description, image } = req.body;
 
@@ -37,7 +37,7 @@ const createProject = async (res, req) => {
   }
 };
 
-const getAllProjects = async (res, req) => {
+const getAllProjects = async (req, res) => {
   try {
     const projects = await Item.find({});
     return res.status(200).json(projects);
