@@ -28,7 +28,7 @@ const createProject = async (req, res) => {
     console.log(userID);
     const decode = jwt.decode(userID.split(" ")[1]);
     console.log(decode);
-    const user = await User.findById(userID);
+    const user = await User.findById(decode.id);
     console.log(user);
 
     const project = await Item.create({
