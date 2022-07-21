@@ -40,7 +40,7 @@ const createProject = async (res, req) => {
 const getAllProjects = async (res, req) => {
   try {
     const projects = await Item.find({});
-    res.status(200).json(projects);
+    return res.status(200).json(projects);
   } catch (error) {
     console.log(error);
   }
