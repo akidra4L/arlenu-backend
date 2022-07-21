@@ -22,6 +22,7 @@ const createProject = async (req, res) => {
     if (!(title && description && image)) {
       return res.status(400).send({ message: "All field are required!" });
     }
+    console.log("userID");
     const userID = req.auth.id;
     console.log(userID);
     const user = await User.findById(userID);
