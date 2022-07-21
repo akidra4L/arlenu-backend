@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Item = require("../models/Item");
 const { User } = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const routes = new Router();
 
@@ -25,6 +26,9 @@ const createProject = async (req, res) => {
     console.log("userID");
     const userID = req.headers.authorization;
     console.log(userID);
+    const decode = userID.split(" ");
+    // const decode = jwt.decode(userID.split(" ")[1]);
+    console.log(decode[1]);
     const user = await User.findById(userID);
     console.log(user);
 
