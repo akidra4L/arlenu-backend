@@ -26,9 +26,8 @@ const createProject = async (req, res) => {
     console.log("userID");
     const userID = req.headers.authorization;
     console.log(userID);
-    const decode = userID.split(" ");
-    // const decode = jwt.decode(userID.split(" ")[1]);
-    console.log(decode[1]);
+    const decode = jwt.decode(userID.split(" ")[1]);
+    console.log(decode);
     const user = await User.findById(userID);
     console.log(user);
 
